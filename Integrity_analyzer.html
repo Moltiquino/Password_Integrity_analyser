@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrity_analyzer</title>
+  <link rel="stylesheet" href="css\project.css">
+<script>
+ function validate() {
+const password= document.getElementById("password-field").value;
+const username= document.getElementById("username-field").value;
+const petname= document.getElementById("petname-field").value;
+const DOB= document.getElementById("DOB-field").value;
+
+			                if (password.length == 0) {
+			                    document.getElementById("msg").innerHTML = "";
+			                    return;}
+			                if(password.length < 8){
+			                document.getElementById("msg").innerHTML ="Password should be atleast 8 character";
+			                 return;
+			                 }
+
+			                if(password.indexOf(username)!=-1){
+			                document.getElementById("msg").innerHTML = "Avoid using username in password";
+			                return;
+
+			                }
+			                if(password.indexOf(petname)!=-1){
+	                          document.getElementById("msg").innerHTML = "Avoid using petname in password";
+	                          return;
+
+			                }
+			                if(password.indexOf(DOB)!=-1){
+			                document.getElementById("msg").innerHTML = "Avoid using DOB in password";
+			                return;
+			                }
+
+
+
+			                var matchedCase = new Array();
+			                matchedCase.push("[$@$!%*#?&]");
+			                matchedCase.push("[A-Z]");
+			                matchedCase.push("[0-9]");
+			                matchedCase.push("[a-z]");
+
+
+
+			                var ctr = 0;
+			                for (var i = 0; i < matchedCase.length; i++) {
+			                    if (new RegExp(matchedCase[i]).test(password)) {
+			                        ctr++;
+			                    }
+			                }
+
+			                var color = "";
+			                var strength = "";
+			                switch (ctr) {
+			                    case 0:
+			                    case 1:
+			                    case 2:
+			                        strength = "Very Weak";
+			                        color = "red";
+			                        break;
+			                    case 3:
+			                        strength = "Medium";
+			                        color = "orange";
+			                        break;
+			                    case 4:
+			                        strength = "Strong";
+			                        color = "green";
+			                        break;
+			                }
+			                document.getElementById("msg").innerHTML = strength;
+			                document.getElementById("msg").style.color = color;
+            }
+
+</script>
+<script>
+     function onlyNumberKey(evt) {
+
+         var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+         if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+             return false;
+         return true;
+     }
+</script>
+</head>
+
+<body>
+
+<table id="analyzer-table" border=1>
+	<tr height="10%"bgcolor="#3a3a3a"><td>
+    <div id="analyzer-image-holder">
+      <img src="images/logo_2x.png" alt="UVCE" width="300" height="100" >
+    </div>
+	</tr></td>
+
+    <tr ><td align="Center" background="images\UVCEMain.jpg" >
+
+   	 <main id="main-holder">
+
+    <h1 id="analyzer-header">Integrity Analyzer</h1>
+
+
+    <form id="analyzer-form">
+
+      <input type="text" name="username" id="username-field" class="analyzer-form-field" placeholder="Username">
+
+      <input type="text" name="petname" id="petname-field" class="analyzer-form-field" placeholder="Pet's name">
+
+      <input type="tel" name="DOB" id="DOB-field" class="analyzer-form-field" onkeypress="return onlyNumberKey(event)" placeholder="ddmmyyyy">
+
+
+
+
+      <input type="text" name="password" id="password-field" class="analyzer-form-field" placeholder="Password">
+
+      <input type="button" value="Check password integrity" id="analyzer-button" onclick="validate();"><p id="msg"></p>
+    </form>
+
+
+  </tr></td>
+  <tr ><td align="Center" bgcolor="#3a3a3a">
+  <font size="1" color="white">Copyrights reserved</a></font>
+  </tr></td>
+</table>
+</body>
+
+</html>
