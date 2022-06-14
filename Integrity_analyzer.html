@@ -21,21 +21,29 @@ const DOB= document.getElementById("DOB-field").value;
 			                document.getElementById("msg").innerHTML ="Password should be atleast 8 character";
 			                 return;
 			                 }
-
-			                if(password.indexOf(username)!=-1){
-			                document.getElementById("msg").innerHTML = "Avoid using username in password";
+			                if(password.length > 15){
+			                document.getElementById("msg").innerHTML ="Password shouldn't exceed 15 characters";
 			                return;
+			                }
+
+                    if(username.length != 0){
+			                if (password.indexOf(username)!=-1){
+			                document.getElementById("msg").innerHTML = "Avoid using username in password";
+			                return;}
 
 			                }
-			                if(password.indexOf(petname)!=-1){
+			         if(petname.length != 0){
+			               if(password.indexOf(petname)!=-1){
 	                          document.getElementById("msg").innerHTML = "Avoid using petname in password";
-	                          return;
+	                          return;}
 
 			                }
+			          if(DOB.length != 0){
 			                if(password.indexOf(DOB)!=-1){
 			                document.getElementById("msg").innerHTML = "Avoid using DOB in password";
-			                return;
+			                return;}
 			                }
+
 
 
 
@@ -104,6 +112,7 @@ const DOB= document.getElementById("DOB-field").value;
     <h1 id="analyzer-header">Integrity Analyzer</h1>
 
 
+
     <form id="analyzer-form">
 
       <input type="text" name="username" id="username-field" class="analyzer-form-field" placeholder="Username">
@@ -112,10 +121,10 @@ const DOB= document.getElementById("DOB-field").value;
 
       <input type="tel" name="DOB" id="DOB-field" class="analyzer-form-field" onkeypress="return onlyNumberKey(event)" placeholder="ddmmyyyy">
 
+                 <div>Enter the above details for a better password integrity check(Optional)</div>
 
 
-
-      <input type="text" name="password" id="password-field" class="analyzer-form-field" placeholder="Password">
+      <p><input type="text" name="password" id="password-field" class="analyzer-form-field" placeholder="Password"></p>
 
       <input type="button" value="Check password integrity" id="analyzer-button" onclick="validate();"><p id="msg"></p>
     </form>
