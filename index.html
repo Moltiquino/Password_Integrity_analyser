@@ -24,16 +24,15 @@
 	        
 				//console.log(x);
 			
-			if (password.length == 0) {
-				document.getElementById("msg").innerHTML = "";
-				return;
-			}
+			
 			if (password.length < 8) {
 				document.getElementById("msg").innerHTML = "Password should be atleast 8 character";
+				document.getElementById("msg").style.color = "red";
 				return;
 			}
 			if (password.length > 25) {
 				document.getElementById("msg").innerHTML = "Password shouldn't exceed 25 characters";
+				document.getElementById("msg").style.color = "red";
 				return;
 			}
                let s1 = "";
@@ -55,6 +54,7 @@
 				}
              if(s1 != "" || s2 !="" || s3 !="")
 			 { document.getElementById("msg").innerHTML = "Avoid using"+s1+s2+s3+"in the password";
+			    document.getElementById("msg").style.color = "red";
 			   return;
 			}
 			
@@ -81,8 +81,11 @@
 			switch (ctr) {
 				case 0:
 				case 1:
+				strength = "Very Weak";
+					color = "red";
+					break;
 				case 2:
-					strength = "Very Weak";
+					strength = "Weak";
 					color = "red";
 					break;
 				case 3:
@@ -105,7 +108,7 @@ function date(){
 	if(DOB.length>10){
 		 document.getElementById("msg1").innerHTML = "Date invalid";
 		 document.getElementById("msg1").style.color = "red";
-		 return;        
+		 return;        	
 }
 if(DOB.length<=10){
 	document.getElementById("msg1").innerHTML = "";
